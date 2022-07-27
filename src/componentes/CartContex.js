@@ -38,17 +38,13 @@ export const CartProvider = ( { children}) => {
     renderRef.current += 1 
   },[carrito])
 
-  
-
-  useEffect(()=> {
-    let cantidad = 0
-    carrito.forEach(articulo => { 
-      cantidad += articulo.cantidad
+  useEffect(() =>{
+    let cantidad = 0 
+    carrito.forEach(articulo => {
+        cantidad += articulo.cantidad
     });
     setCantidad(cantidad)
-  },[carrito])
-
-  
+},[carrito])
 
   const agregarItem = (productoParagregar) => {
       if (!carrito.some(articulo => articulo.id === productoParagregar.id)) {
