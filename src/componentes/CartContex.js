@@ -13,6 +13,7 @@ export const CartProvider = ( { children}) => {
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
+ 
 
   const alertStates = () => {
     Swal.fire({
@@ -64,7 +65,9 @@ export const CartProvider = ( { children}) => {
   }
 
   const getTotalPrice =() => {
-    const total = carrito.reduce((total, articulo) => total + articulo.precio * articulo.cantidad, 0 )
+    let total = 0
+
+
     return total
   }
 
