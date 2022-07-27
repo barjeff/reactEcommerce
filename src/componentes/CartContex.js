@@ -9,11 +9,11 @@ const CartContex = createContext()
 
 export const CartProvider = ( { children}) => {
   const [productosGuardados,setProductos] = useState([])
-  const [carrito,setCarrito] = useState([])
+ 
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
- 
+  const [carrito,setCarrito] = useState([])
 
   const alertStates = () => {
     Swal.fire({
@@ -41,7 +41,7 @@ export const CartProvider = ( { children}) => {
 
   useEffect(() =>{
     let cantidad = 0 
-    carrito.forEach(articulo => {
+    carrito?.forEach(articulo => {
         cantidad += articulo.cantidad
     });
     setCantidad(cantidad)
@@ -66,7 +66,9 @@ export const CartProvider = ( { children}) => {
 
   const getTotalPrice =() => {
     let total = 0
-
+    carrito?.forEach(prod =>{
+      total += prod.cantidad * prod.precio
+    })
 
     return total
   }
