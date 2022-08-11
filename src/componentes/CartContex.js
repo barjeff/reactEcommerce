@@ -47,10 +47,13 @@ export const CartProvider = ( { children}) => {
     setCantidad(cantidad)
 },[carrito])
 
+
   const agregarItem = (productoParagregar) => {
-      if (!carrito.some(articulo => articulo.id === productoParagregar.id)) {
-        setCarrito([...carrito,productoParagregar])
-      }
+    let productoYagregado = carrito?.some(articulo => articulo.id === productoParagregar.id)
+    if (!productoYagregado) {
+      setCarrito([...carrito,productoParagregar])
+    } 
+    
     }
 
   const deleteItem = (ide) => {
