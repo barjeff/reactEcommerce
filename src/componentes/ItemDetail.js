@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
-    const { agregarItem } = useContext(CartContex)
+    const { agregarItem,carrito } = useContext(CartContex)
     const [cantidadAgregada, setCantidadAgregada] = useState(0)
     const handleOnAdd = (cantidad) => {
         console.log(`se agregaron ${cantidad} ${marca}`)
@@ -24,9 +24,10 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
                         <h3 className='nombre'>{marca}</h3>
                         <div className='textdescripcion'> <p className='descripcion'>{descripcion}</p></div>
                         <p className='precio'> Precio: <b>{precio} ars.</b></p>
-                        {cantidadAgregada === 0
-                            ? <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
-                            : <Link to='/carrito'> terminar compra</Link>
+                        { carrito?.find(articulo => articulo.id === id)
+                            ?<Link to='/carrito'> terminar compra</Link> 
+                            
+                            : <Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
                         }
 
                     </div>

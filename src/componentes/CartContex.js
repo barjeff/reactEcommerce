@@ -48,7 +48,7 @@ export const CartProvider = ( { children}) => {
 },[carrito])
 
 const agregarItem = ( agregarProducto ) => {
-  if (!carrito.find(articulo => articulo.id === agregarProducto.id)){
+  if (carrito?.find(articulo => articulo.id === agregarProducto.id)  != agregarProducto){
           setCarrito([...carrito, agregarProducto])
   }
 } 
