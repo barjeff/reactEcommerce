@@ -48,17 +48,19 @@ export const CartProvider = ( { children}) => {
 },[carrito])
 
 const agregarItem = ( agregarProducto ) => {
-  if (!carrito.some (articulo => articulo.id === agregarProducto.id)){
-      setCarrito([...carrito, agregarProducto])
+  if (!carrito.find(articulo => articulo.id === agregarProducto.id)){
+          setCarrito([...carrito, agregarProducto])
   }
-}
-  /*const agregarItem = (productoParagregar) => {
-    let productoYagregado = carrito?.some(articulo => articulo.id === productoParagregar.id)
-    if (!productoYagregado) {
-      setCarrito([...carrito,productoYagregado])
-    } 
+} 
+ /* const agregarItem = (productoParagregar) => {
+    let productoYagregado = carrito?.find(articulo => articulo.id === productoParagregar.id)
+    if (productoParagregar ===  productoYagregado) {
+      console.log("producto ya agregado")
+    } else {
+      setCarrito([...carrito, productoParagregar])
+    }
 
-    } */
+    }  */
 
   const deleteItem = (ide) => {
     const productosNoEliminados = carrito.filter(art => art.id !== ide)
