@@ -48,9 +48,9 @@ export const CartProvider = ( { children}) => {
 },[carrito])
 
 const agregarItem = ( agregarProducto ) => {
-  if (carrito?.find(articulo => articulo.id === agregarProducto.id)  != agregarProducto){
+
           setCarrito([...carrito, agregarProducto])
-  }
+  
 } 
  /* const agregarItem = (productoParagregar) => {
     let productoYagregado = carrito?.find(articulo => articulo.id === productoParagregar.id)
