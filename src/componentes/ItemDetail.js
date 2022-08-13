@@ -24,7 +24,7 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
                         <h3 className='nombre'>{marca}</h3>
                         <div className='textdescripcion'> <p className='descripcion'>{descripcion}</p></div>
                         <p className='precio'> Precio: <b>{precio} ars.</b></p>
-                        { !carrito.find(articulo => articulo.id === id)
+                        { !carrito.some(articulo => articulo.id === id)
                             ?<Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
                             
                             : <Link to='/carrito'> terminar compra</Link> 
