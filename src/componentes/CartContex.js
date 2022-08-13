@@ -9,11 +9,11 @@ const CartContex = createContext()
 
 export const CartProvider = ( { children}) => {
   const [productosGuardados,setProductos] = useState([])
-  const [articulos,setarticulos] = useState ()
+  const [carrito,setCarrito] = useState([])
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
-  const [carrito,setCarrito] = useState([])
+ 
 
   const alertStates = () => {
     Swal.fire({
@@ -41,26 +41,18 @@ export const CartProvider = ( { children}) => {
 
   useEffect(() =>{
     let cantidad = 0 
-    carrito?.forEach(articulo => {
+    carrito.forEach(articulo => {
         cantidad += articulo.cantidad
     });
     setCantidad(cantidad)
 },[carrito])
 
-const agregarItem = ( agregarProducto ) => {
-
-          setCarrito([...carrito, agregarProducto])
-  
-} 
- /* const agregarItem = (productoParagregar) => {
-    let productoYagregado = carrito?.find(articulo => articulo.id === productoParagregar.id)
-    if (productoParagregar ===  productoYagregado) {
-      console.log("producto ya agregado")
-    } else {
-      setCarrito([...carrito, productoParagregar])
+  const agregarItem = (productoParagregar) => {
+    let productoYagregado = carrito?.some(articulo => articulo.id === productoParagregar.id)
+    if (!productoYagregado) {
+      setCarrito([...carrito,productoParagregar])
+    } 
     }
-
-    }  */
 
   const deleteItem = (ide) => {
     const productosNoEliminados = carrito.filter(art => art.id !== ide)
@@ -75,7 +67,7 @@ const agregarItem = ( agregarProducto ) => {
 
   const getTotalPrice =() => {
     let total = 0
-    carrito?.forEach(prod =>{
+    carrito.forEach(prod =>{
       total += prod.cantidad * prod.precio
     })
 
@@ -261,9 +253,7 @@ const handleSubmit = (event) => {
         usuario,
         carrito,
         logout,
-        loading,
-        setarticulos,
-        articulos}}>
+        loading}}>
             {children}
         </CartContex.Provider>
     )

@@ -1,11 +1,11 @@
 import Contador from './Itemcontador'
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import CartContex from './CartContex'
 import { Link } from 'react-router-dom'
 
 
 const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
-    const { agregarItem,carrito} = useContext(CartContex)
+    const { agregarItem } = useContext(CartContex)
     const [cantidadAgregada, setCantidadAgregada] = useState(0)
     const handleOnAdd = (cantidad) => {
         console.log(`se agregaron ${cantidad} ${marca}`)
@@ -13,14 +13,6 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
         setCantidadAgregada(cantidad)
     }
 
-     
- 
-
-   let carrio = carrito.some(articulo => articulo.id === id)
-    console.log(carrio)
-
-    
-    
     return (
         <>
             <div className='  col coldetail col-lg-8 col-md-10 col-sm-6'>
@@ -32,18 +24,10 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
                         <h3 className='nombre'>{marca}</h3>
                         <div className='textdescripcion'> <p className='descripcion'>{descripcion}</p></div>
                         <p className='precio'> Precio: <b>{precio} ars.</b></p>
-                        { !carrio
-                             ? <>
-                                <Link to='/carrito'> terminar compra</Link>  
-                                <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
-                             </>
-                          
-                            : <Link to='/carrito'> terminar compra</Link> 
-                           
-                            
-                           
+                        {cantidadAgregada === 0
+                            ? <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
+                            : <Link to='/carrito'> terminar compra</Link>
                         }
-
 
                     </div>
                 </div>
