@@ -1,5 +1,5 @@
 import Contador from './Itemcontador'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import CartContex from './CartContex'
 import { Link } from 'react-router-dom'
 
@@ -13,8 +13,13 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
         setCantidadAgregada(cantidad)
     }
 
-    let carrio = carrito?.some(articulo => articulo.id === id)
+     
+ 
+
+   let carrio = carrito?.some(articulo => articulo.id === id)
     console.log(carrio)
+
+    
     
     return (
         <>
@@ -27,10 +32,10 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
                         <h3 className='nombre'>{marca}</h3>
                         <div className='textdescripcion'> <p className='descripcion'>{descripcion}</p></div>
                         <p className='precio'> Precio: <b>{precio} ars.</b></p>
-                        { carrio === true
-                            
-                            ? <Link to='/carrito'> terminar compra</Link> 
-                            : <Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
+                        { !carrio
+                             ? <Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
+                            : <Link to='/carrito'> terminar compra</Link> 
+                           
                             
                            
                         }
