@@ -12,6 +12,9 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
         agregarItem({ id, marca, precio, descripcion, cantidad, img })
         setCantidadAgregada(cantidad)
     }
+
+    let carrio = carrito?.some(articulo => articulo.id === id)
+    console.log(carrio)
     
     return (
         <>
@@ -24,10 +27,12 @@ const ItemDetail = ({ id, marca, precio, img, descripcion, stock }) => {
                         <h3 className='nombre'>{marca}</h3>
                         <div className='textdescripcion'> <p className='descripcion'>{descripcion}</p></div>
                         <p className='precio'> Precio: <b>{precio} ars.</b></p>
-                        { !carrito.some(articulo => articulo.id === id)
-                            ?<Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
+                        { carrio === true
                             
-                            : <Link to='/carrito'> terminar compra</Link> 
+                            ? <Link to='/carrito'> terminar compra</Link> 
+                            : <Link to='/carrito'> terminar compra</Link>  && <Contador stock={stock} initial={1} onAdd={handleOnAdd} />
+                            
+                           
                         }
 
 
