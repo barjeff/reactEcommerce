@@ -9,7 +9,7 @@ const CartContex = createContext()
 
 export const CartProvider = ( { children}) => {
   const [productosGuardados,setProductos] = useState([])
- 
+  const [articulos,setarticulos] = useState ()
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
@@ -261,7 +261,9 @@ const handleSubmit = (event) => {
         usuario,
         carrito,
         logout,
-        loading}}>
+        loading,
+        setarticulos,
+        articulos}}>
             {children}
         </CartContex.Provider>
     )
