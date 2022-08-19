@@ -57,7 +57,7 @@ export const CartProvider = ( { children}) => {
    
   const agregarItem = (agregarProducto) => {
     let pro = carrito?.some(articulo => articulo.id === agregarProducto.id)
-    if (pro) {
+    if (pro || null) {
       console.log("producto ya agregado" + pro)
   } else if(!pro) {
     setCarrito([...carrito, agregarProducto])
