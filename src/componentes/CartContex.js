@@ -13,7 +13,7 @@ export const CartProvider = ( { children}) => {
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
-  const [carrito,setCarrito] = useState([])
+  const [carrito,setCarrito] = useState([{}])
 
   const alertStates = () => {
     Swal.fire({
