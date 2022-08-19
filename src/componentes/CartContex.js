@@ -54,13 +54,12 @@ export const CartProvider = ( { children}) => {
 } */
 
 
-   
   const agregarItem = (agregarProducto) => {
-    let pro = carrito?.some(articulo => articulo.id === agregarProducto.id)
-    if (pro || null) {
-      console.log("producto ya agregado" + pro)
-  } else if(!pro) {
-    setCarrito([...carrito, agregarProducto])
+    let pro = carrito?.find(articulo => articulo.id === agregarProducto.id)
+    if (pro == undefined ) {
+      setCarrito([...carrito, agregarProducto])
+  } else {
+    console.log("producto ya agregrado")
   }
 }
 
