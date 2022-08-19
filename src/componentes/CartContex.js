@@ -13,7 +13,7 @@ export const CartProvider = ( { children}) => {
   const renderRef = useRef(0)
   const [cantidad,setCantidad] = useState(0)
   const [datausuario,setDatausuario] = useState({})
-  const [carrito,setCarrito] = useState([{}])
+  const [carrito,setCarrito] = useState([])
 
   const alertStates = () => {
     Swal.fire({
@@ -47,12 +47,20 @@ export const CartProvider = ( { children}) => {
     setCantidad(cantidad)
 },[carrito])
 
-const agregarItem = ( agregarProducto ) => {
-  
+const isInCart = (id) => {
+  return carrito?.some(p => p.id === id )
+}
+const agregarItem = (productToAdd) => {
+  if(!isInCart(productToAdd.id)) {
+      setCarrito([...carrito, productToAdd])
+  } 
+}
+
+/*const agregarItem = ( agregarProducto ) => {
       setCarrito([...carrito,agregarProducto])
       console.log(agregarProducto)
 } 
-
+*/
 
  /* const agregarItem = (agregarProducto) => {
     let pro = carrito?.find(articulo => articulo.id === agregarProducto.id)
